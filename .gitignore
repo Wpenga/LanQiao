@@ -1,5 +1,2 @@
-/*
-!.gitignore
-!/.vscode/
-!*.cpp
-!*.md
+历届试题/*[!*.cpp]
+算法笔记/*[!*.cpp]
