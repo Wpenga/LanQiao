@@ -25,8 +25,6 @@ void DFS(int cnt,int num)
             if(abs(A[i]-*it)!=K) VS.push_back(A[i]),DFS(cnt,num+1),VS.pop_back();
         }
     }
-
-
 }
 
 
@@ -41,8 +39,6 @@ int main()
     }
 
     DFS(0,0);
-
     cout<<ans;
-
     return 0;
 }
