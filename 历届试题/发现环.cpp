@@ -4,40 +4,44 @@
 #include <algorithm>
 using namespace std;
 typedef long long ll;
+const int maxv=100005;
 
 int maxn=-0x3f3f3f3f,now;
 set<int> circle;
-vector<int> G[10005];
-bool track[100005],ans[100005];
+vector<int> G[maxv];
+bool ans[maxv],flag=false;
 
 
-void BFS(int v)
+void BFS(int pre,int u)
 {
-
-    for(vector<int>::iterator it=G[v].begin();it!=G[v].end();it++)
+    if(flag==true) return;
+    for(vector<int>::iterator it=G[u].begin();it!=G[u].end();it++)
     {
-        if(track[*it]) {ans[*it]=true;return;}
-        ans[*it]=track[*it]=true,BFS(*it),ans[*it]=track[*it]=false;
+        if(*it!=pre)
+        {
+            if(ans[*it])
+            {
+                for(int i=1;i<=maxn;i++)
+                    if(ans[i]) cout<<i<<' ';
+                cout<<endl;
+                flag=true;
+                return;
+            }
+
+            else
+                ans[*it]=true,BFS(u,*it),ans[*it]=false;
+        }
     }
 }
-
-
 
 
 void BFSTrave()
 {
-    for(int v=1;v<=maxn;v++)
+    for(int i=1;i<=maxn;i++)
     {
-        if(ans[v]==false)
-        fill(track, track+100005, false);
-        track[v]=true;
-        BFS(v);
-
+        BFS(i,i);
     }
 }
-
-
-
 
 
 
@@ -53,8 +57,7 @@ int main()
         maxn=max(max(a,b),maxn);
     }
 
-
-
+    BFSTrave();
 
 
     return 0;
